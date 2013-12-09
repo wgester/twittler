@@ -25,6 +25,12 @@
           	  $tweet.appendTo($body);
           	  index -= 1;
             }
+			$('div').click([this], function(tweet){
+				var tweetText = tweet.target.outerText;
+				var userArray = tweetText.match(/[a-z]+/);
+				var user = userArray[0];
+				console.log(user);
+			});
 		};
 		function flow() {
 			intervalID = window.setInterval(tweeter, 500);
