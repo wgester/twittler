@@ -26,10 +26,19 @@
           	  index -= 1;
             }
 			$('div').click([this], function(tweet){
+				clearInterval(intervalID);
 				var tweetText = tweet.target.outerText;
 				var userArray = tweetText.match(/[a-z]+/);
 				var user = userArray[0];
-				console.log(user);
+				$body.html('<img src="http://www2.warnerbros.com/spacejam/movie/img/p-jamlogo.gif" height="165" width="272" alt="Space Jam">');
+				var indexUser = streams.users[user].length - 1;
+				while(indexUser >= 0){
+					var userTweet = streams.users[user][indexUser]
+					var $userTweet = $('<div></div>');
+					$userTweet.text(userTweet.created_at.toLocaleTimeString() + ' ' + '@' + userTweet.user + ': ' + userTweet.message);
+					$userTweet.appendTo($body);
+					indexUser -= 1;
+				}
 			});
 		};
 		function flow() {
